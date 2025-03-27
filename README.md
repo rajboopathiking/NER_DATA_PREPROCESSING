@@ -23,7 +23,7 @@ Step - 2:
 DataSet Format :
 pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact word and entity (Arun Kumar Jagatramka - PLAINTIFF)
    
-                    text	                                                  entities
+  text	 | entities
 0	Arun Kumar Jagatramka vs Ultrabulk AS on 22 Se...	  | [Arun Kumar Jagatramka - PLAINTIFF, Ultrabulk ...
 1	Author Biren Vaishnav	                               |  [Biren Vaishnav - PERSON]
 2	The Supreme Court ruled in favor of Jane Smith.	   |   [Supreme Court - LOC, Jane Smith - PLAINTIFF]
