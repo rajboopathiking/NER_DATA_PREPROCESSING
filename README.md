@@ -29,11 +29,11 @@ Step - 2:
 DataSet Format :
 pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact word and entity (Arun Kumar Jagatramka - PLAINTIFF)
    
-  text	                                               |             entities
-0	Arun Kumar Jagatramka vs Ultrabulk AS on 22 Se...	  | [Arun Kumar Jagatramka - PLAINTIFF, Ultrabulk ...
-1	Author Biren Vaishnav	                              |  [Biren Vaishnav - PERSON]
-2	The Supreme Court ruled in favor of Jane Smith.	    |   [Supreme Court - LOC, Jane Smith - PLAINTIFF]
-3	The Gujarat High Court issued a judgment in Ah...	  |  [Gujarat High Court - ORG, Ahmedabad - LOC]
+      text	                                               |             entities
+    0	Arun Kumar Jagatramka vs Ultrabulk AS on 22 Se...	  | [Arun Kumar Jagatramka - PLAINTIFF, Ultrabulk ...
+    1	Author Biren Vaishnav	                              |  [Biren Vaishnav - PERSON]
+    2	The Supreme Court ruled in favor of Jane Smith.	    |   [Supreme Court - LOC, Jane Smith - PLAINTIFF]
+    3	The Gujarat High Court issued a judgment in Ah...	  |  [Gujarat High Court - ORG, Ahmedabad - LOC]
 
   API Documentation :
 
@@ -64,11 +64,12 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
      ```
 
      output :
-              id	                                                     tokens	ner_tags
-         0	0	[Arun, Kumar, Jagatramka, vs, Ultrabulk, AS, o...	 [B-PLAINTIFF, I-PLAINTIFF, I-PLAINTIFF, O, B-D...
-         1	1	[Author, Biren, Vaishnav]	[O, B-PERSON, I-PERSON]
-         2	8	[The, Supreme, Court, ruled, in, favor, of, Ja...	  [O, B-LOC, I-LOC, O, O, O, O, B-PLAINTIFF, I-P...
-         3	9	[The, Gujarat, High, Court, issued, a, judgmen...	  [O, B-ORG, I-ORG, I-ORG, O, O, O, O, B-LOC, O]
+     
+               id	                                                     tokens	ner_tags
+          0	0	[Arun, Kumar, Jagatramka, vs, Ultrabulk, AS, o...	 [B-PLAINTIFF, I-PLAINTIFF, I-PLAINTIFF, O, B-D...
+          1	1	[Author, Biren, Vaishnav]	[O, B-PERSON, I-PERSON]
+          2	8	[The, Supreme, Court, ruled, in, favor, of, Ja...	  [O, B-LOC, I-LOC, O, O, O, O, B-PLAINTIFF, I-P...
+          3	9	[The, Gujarat, High, Court, issued, a, judgmen...	  [O, B-ORG, I-ORG, I-ORG, O, O, O, O, B-LOC, O]
 
  4)  Create _label_maps to create Huggingface Dataset :
 
@@ -81,6 +82,7 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
     ```
 
    output :
+   
        ['B-DATE',
      'B-Defender',
      'B-LOC',
@@ -105,19 +107,20 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
      ```
 
      output :
-         DatasetDict({
-        train: Dataset({
-            features: ['id', 'tokens', 'ner_tags'],
-            num_rows: 3
-        })
-        test: Dataset({
-            features: ['id', 'tokens', 'ner_tags'],
-            num_rows: 1
-        })
-    })
+     
+          DatasetDict({
+         train: Dataset({
+             features: ['id', 'tokens', 'ner_tags'],
+             num_rows: 3
+         })
+         test: Dataset({
+             features: ['id', 'tokens', 'ner_tags'],
+             num_rows: 1
+         })
+     })
 
      
-   6) coreference_model(text) >>>
+   7) coreference_model(text) >>>
 
       ```python
 
@@ -125,5 +128,7 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
 
       ```
 
-      input :  >> text = "John is Victim. He is Innocent"
-      output : He mentions John it returns in json format which text,mentions,and span ...
+      input :
+               >> text = "John is Victim. He is Innocent"
+      output :
+               He mentions John it returns in json format which text,mentions,and span ...
