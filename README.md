@@ -128,7 +128,7 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
 
       ```
 
-      input :
-               >> text = "John is Victim. He is Innocent"
-      output :
-               He mentions John it returns in json format which text,mentions,and span ...
+          input :
+                 >> text = "John is Victim. He is Innocent"
+          output :
+                 He mentions John it returns in json format which text,mentions,and span ...
