@@ -21,5 +21,5 @@ dependencies = ["numpy","spacy",
 "pandas"]
 
 [project.urls]
-Homepage = "https://github.com/rajboopathiking/NER_DATA_PREPROCESSING"
-Repository = "https://github.com/rajboopathiking/NER_DATA_PREPROCESSING"
+Homepage = "https://github.com/rajboopathiking/ner-data-processor"
+Repository = "https://github.com/rajboopathiking/ner-data-processor"
