@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ner-data-processor"  # ✅ Use a unique name that YOU own on PyPI
+name = "ner-data-processor"
 version = "0.0.1"
 description = "A NER Data Preparing Tool"
 readme = "README.md"
@@ -15,10 +15,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = ["numpy","spacy",
-"datasets",
-"tqdm",
-"pandas"]
+dependencies = ["numpy", "spacy", "datasets", "tqdm", "pandas"]
 
 [project.urls]
 Homepage = "https://github.com/rajboopathiking/ner-data-processor"
