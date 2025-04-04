@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "NER_DATA_PROCESSOR"  # 🔁 use kebab-case for PyPI
+name = "ner-data-processor"  # ✅ Use a unique name that YOU own on PyPI
 version = "0.0.1"
 description = "A NER Data Preparing Tool"
 readme = "README.md"
