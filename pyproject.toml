@@ -3,8 +3,8 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "NER_DATA_PROCESSOR"  # 🔁 use kebab-case for PyPI
-version = "0.0.1"
+name = "ner-data-processor"
+version = "0.0.2"
 description = "A NER Data Preparing Tool"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -15,11 +15,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = ["numpy","spacy",
-"datasets",
-"tqdm",
-"pandas"]
+dependencies = ["numpy", "spacy", "datasets", "tqdm", "pandas"]
 
 [project.urls]
-Homepage = "https://github.com/rajboopathiking/NER_DATA_PREPROCESSING"
-Repository = "https://github.com/rajboopathiking/NER_DATA_PREPROCESSING"
+Homepage = "https://github.com/rajboopathiking/ner-data-processor"
+Repository = "https://github.com/rajboopathiking/ner-data-processor"
