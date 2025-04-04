@@ -7,6 +7,8 @@ it not like a raw dataset. we want to convert text (sentence) to required format
 
 Step - 1:
 
+ 1) install via git
+
  Download :
 
      ```bash
@@ -24,6 +26,16 @@ Step - 1:
     ```bash
     pip install requirements.txt
     ```
+
+2 ) install via pypi
+
+    ```bash
+    pip install ner-data-processor
+    ```
+    ```python
+    from ner-data-processor.Ner_Data_Preparation import Custom_Ner_Dataset
+    ner = Custom_Ner_Dataset()
+    ```
 Step - 2:
 
 DataSet Format :
@@ -39,15 +51,7 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
 
   output for example only
 
-  1) install via pypi
-
-    ```bash
-    pip install ner-data-processor
-    ```
-    ```python
-    from NER_DATA_PROCESSOR.Ner_Data_Preparation import Custom_Ner_Dataset
-    ner = Custom_Ner_Dataset()
-    ```
+  
   
   2) install via Github 
 
