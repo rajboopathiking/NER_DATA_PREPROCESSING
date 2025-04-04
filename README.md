@@ -26,8 +26,8 @@ pip install ner-data-processor
 ### 🛠️ From GitHub
 
 ```bash
-git clone <git repository>
-cd <git repository>
+git clone https://github.com/rajboopathiking/ner-data-processor
+cd ner-data-processor
 pip install -r requirements.txt
 ```
 
