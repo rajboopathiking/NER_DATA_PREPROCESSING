@@ -39,6 +39,18 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
 
   output for example only
 
+  1) install via pypi
+
+    ```bash
+    pip install NER_DATA_PROCESSOR
+    ```
+    ```python
+    from NER_DATA_PROCESSOR.Ner_Data_Preparation import Custom_Ner_Dataset
+    ner = Custom_Ner_Dataset()
+    ```
+  
+  2) install via Github 
+
   1) extract_DataFrame(df) >>
 
      ```python
@@ -129,3 +141,8 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
       ```
           input : text = "John is Victim. He is Innocent"
           output : He mentions John it returns in json format which text,mentions,and span ...
+
+
+
+
+
