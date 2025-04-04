@@ -1,152 +1,183 @@
-﻿# NER_DATA_PREPROCESSING :
+# NER Data Processor
 
-### Collecting Data For NER:
- this tool helps to create a ner and corefer dataset easily . To train a Token classification and corefer resolution need a dataset.
-it not like a raw dataset. we want to convert text (sentence) to required format. lets see how this framework/library used in your project. lets go ...
+[![Python Version](https://img.shields.io/pypi/pyversions/ner-data-processor.svg)](https://pypi.org/project/ner-data-processor/)
+[![PyPI version](https://badge.fury.io/py/ner-data-processor.svg)](https://pypi.org/project/ner-data-processor/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+**NER Data Processor** is a Python library to help you easily prepare datasets for Named Entity Recognition (NER) and Coreference Resolution tasks. It transforms raw text into formats ready for training token classification models using Hugging Face or other frameworks.
 
-Step - 1:
+---
 
- 1) install via git
+## 📚 Documentation
 
- Download :
+- [GitHub Repository](https://github.com/rajboopathiking/ner-data-processor)
+- [PyPI Package](https://pypi.org/project/ner-data-processor)
 
-     ```bash
-     git clone https://github.com/rajboopathiking/NER_DATA_PREPROCESSING.git
-     ```
+---
 
-  >> optional (if you already in correct folder)
+## 📦 Installation
 
-     ```bash 
-     cd NER_DATA_PREPROCESSING
-     ```
+### ✅ From PyPI (Recommended)
 
- requirements.txt -->> installation :
+```bash
+pip install ner-data-processor
+```
 
-    ```bash
-    pip install requirements.txt
-    ```
+### 🛠️ From GitHub
 
-2 ) install via pypi
+```bash
+git clone https://github.com/rajboopathiking/NER_DATA_PREPROCESSING.git
+cd NER_DATA_PREPROCESSING
+pip install -r requirements.txt
+```
 
-    ```bash
-    pip install ner-data-processor
-    ```
-    ```python
-    from ner_data_processor.Ner_Data_Preparation import Custom_Ner_Dataset
-    ner = Custom_Ner_Dataset()
-    ```
-Step - 2:
+---
 
-DataSet Format :
-pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact word and entity (Arun Kumar Jagatramka - PLAINTIFF)
-   
-      text	                                               |             entities
-    0	Arun Kumar Jagatramka vs Ultrabulk AS on 22 Se...	  | [Arun Kumar Jagatramka - PLAINTIFF, Ultrabulk ...
-    1	Author Biren Vaishnav	                              |  [Biren Vaishnav - PERSON]
-    2	The Supreme Court ruled in favor of Jane Smith.	    |   [Supreme Court - LOC, Jane Smith - PLAINTIFF]
-    3	The Gujarat High Court issued a judgment in Ah...	  |  [Gujarat High Court - ORG, Ahmedabad - LOC]
+## 🚀 Getting Started
 
-  API Documentation :
+```python
+from ner_data_processor.Ner_Data_Preparation import Custom_Ner_Dataset
 
-  output for example only
+ner = Custom_Ner_Dataset()
+```
 
-  
-  
-  2) install via Github 
+---
 
-  1) extract_DataFrame(df) >>
+## 📊 Dataset Format
 
-     ```python
-     ner = Custom_Ner_Dataset()
-     data = ner.extract_DataFrame(df)
-     ```
+Input should be a **pandas DataFrame** with two columns:
+- `text`: Sentence or paragraph
+- `entities`: List of labeled entities with their tags
 
-     output :
-      
-    text	entities
-    0	Arun Kumar Jagatramka vs Ultrabulk AS on 22 Se...	[(0, 21, PLAINTIFF), (25, 37, Defender), (41, ...
-    1	Author Biren Vaishnav	[(7, 21, PERSON)]
-    2	The Supreme Court ruled in favor of Jane Smith.	[(4, 17, LOC), (36, 46, PLAINTIFF)]
-    3	The Gujarat High Court issued a judgment in Ah...	[(4, 22, ORG), (44, 53, LOC)]
+Example:
 
-  2) to_dataset(data) >>
+| text | entities |
+|------|----------|
+| Arun Kumar Jagatramka vs Ultrabulk AS on 22 Sept | [Arun Kumar Jagatramka - PLAINTIFF, Ultrabulk AS - Defender] |
+| Author Biren Vaishnav | [Biren Vaishnav - PERSON] |
 
-     ```python
-     import pandas as pd
-     import numpy as np
-     df = pd.DataFrame(ner.to_dataset(data))
+---
 
-     ```
+## ⚙️ API Overview
 
-     output :
-     
-               id	                                                     tokens	ner_tags
-          0	0	[Arun, Kumar, Jagatramka, vs, Ultrabulk, AS, o...	 [B-PLAINTIFF, I-PLAINTIFF, I-PLAINTIFF, O, B-D...
-          1	1	[Author, Biren, Vaishnav]	[O, B-PERSON, I-PERSON]
-          2	8	[The, Supreme, Court, ruled, in, favor, of, Ja...	  [O, B-LOC, I-LOC, O, O, O, O, B-PLAINTIFF, I-P...
-          3	9	[The, Gujarat, High, Court, issued, a, judgmen...	  [O, B-ORG, I-ORG, I-ORG, O, O, O, O, B-LOC, O]
+### `extract_DataFrame(df)`
 
- 4)  Create _label_maps to create Huggingface Dataset :
+Convert the annotated DataFrame into span-based entity format.
 
-    ```python
-    labels = []
-    for i in df["ner_tags"].tolist():
-      labels.extend(i)
-    labels = np.unique(labels).tolist()
-    labels
-    ```
+```python
+data = ner.extract_DataFrame(df)
+```
 
-   output :
-   
-       ['B-DATE',
-     'B-Defender',
-     'B-LOC',
-     'B-ORG',
-     'B-PERSON',
-     'B-PLAINTIFF',
-     'I-DATE',
-     'I-Defender',
-     'I-LOC',
-     'I-ORG',
-     'I-PERSON',
-     'I-PLAINTIFF',
-     'O']
-    
+**Output:**
 
-  5) to_huggingface_dataset(data,labels) >>
+| text | entities |
+|------|----------|
+| Arun Kumar Jagatramka vs Ultrabulk AS on... | [(0, 21, PLAINTIFF), (25, 37, Defender)] |
+| Author Biren Vaishnav | [(7, 21, PERSON)] |
 
-     ```python
-     dataset = ner.to_huggingface_dataset(df,labels)
-     dataset = dataset.train_test_split(test_size=0.1)
-     dataset
-     ```
+---
 
-     output :
-     
-          DatasetDict({
-         train: Dataset({
-             features: ['id', 'tokens', 'ner_tags'],
-             num_rows: 3
-         })
-         test: Dataset({
-             features: ['id', 'tokens', 'ner_tags'],
-             num_rows: 1
-         })
-     })
+### `to_dataset(data)`
 
-     
-   7) coreference_model(text) >>>
+Convert span-format data into token-label format for model training.
 
-      ```python
+```python
+import pandas as pd
+df = pd.DataFrame(ner.to_dataset(data))
+```
 
-      ner.coreference_model(text:str)  
+**Output:**
 
-      ```
-          input : text = "John is Victim. He is Innocent"
-          output : He mentions John it returns in json format which text,mentions,and span ...
+| id | tokens | ner_tags |
+|----|--------|----------|
+| 0 | [Arun, Kumar, Jagatramka, ...] | [B-PLAINTIFF, I-PLAINTIFF, I-PLAINTIFF, ...] |
+| 1 | [Author, Biren, Vaishnav] | [O, B-PERSON, I-PERSON] |
 
+---
 
+### `create _label_maps`
 
+```python
+labels = []
+for i in df["ner_tags"]:
+    labels.extend(i)
+labels = np.unique(labels).tolist()
+```
 
+**Output:**
 
+```python
+['B-DATE', 'B-Defender', 'B-LOC', 'B-ORG', 'B-PERSON', 'B-PLAINTIFF',
+ 'I-DATE', 'I-Defender', 'I-LOC', 'I-ORG', 'I-PERSON', 'I-PLAINTIFF', 'O']
+```
+
+---
+
+### `to_huggingface_dataset(df, labels)`
+
+Convert your processed DataFrame into Hugging Face `DatasetDict`.
+
+```python
+dataset = ner.to_huggingface_dataset(df, labels)
+dataset = dataset.train_test_split(test_size=0.1)
+```
+
+**Output:**
+
+```python
+DatasetDict({
+    train: Dataset({
+        features: ['id', 'tokens', 'ner_tags'],
+        num_rows: 3
+    }),
+    test: Dataset({
+        features: ['id', 'tokens', 'ner_tags'],
+        num_rows: 1
+    })
+})
+```
+
+---
+
+### `coreference_model(text)`
+
+Basic coreference resolution model.
+
+```python
+text = "John is Victim. He is Innocent"
+result = ner.coreference_model(text)
+```
+
+**Output:**
+
+```json
+{
+  "mentions": [
+    {
+      "text": "He",
+      "refers_to": "John",
+      "span": [13, 15]
+    }
+  ]
+}
+```
+
+---
+
+## 🧪 Testing
+
+To run tests:
+
+```bash
+pytest
+```
+
+---
+
+## 🪪 License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+---
+
+> Built with ❤️ by [Boopathiraj](mailto:boopathiraj.aideveloper@gmail.com)
