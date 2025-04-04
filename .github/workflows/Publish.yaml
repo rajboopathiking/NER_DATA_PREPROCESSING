@@ -1,4 +1,4 @@
-name: Publish Python Package
+name: Publish to PyPI
 
 on:
   release:
@@ -7,22 +7,23 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write  # ✅ Required for trusted publishing
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
       - name: Install build tools
-        run: pip install build
+        run: pip install build twine
 
-      - name: Build package
-        run: python -m build
+      - name: Build the package
+        run: python -m build --sdist --wheel
 
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Publish to PyPI using Twine
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
