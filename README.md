@@ -164,20 +164,8 @@ result = ner.coreference_model(text)
 
 ---
 
-## 🧪 Testing
-
-To run tests:
-
-```bash
-pytest
-```
-
----
-
 ## 🪪 License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
-
-> Built with ❤️ by [Boopathiraj](mailto:boopathiraj.aideveloper@gmail.com)
