@@ -42,7 +42,7 @@ pandas Dataframe with text(Arun Kumar Jagatramka vs Ultrabulk AS )  and exact wo
   1) install via pypi
 
     ```bash
-    pip install NER_DATA_PROCESSOR
+    pip install ner-data-processor
     ```
     ```python
     from NER_DATA_PROCESSOR.Ner_Data_Preparation import Custom_Ner_Dataset
