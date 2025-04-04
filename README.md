@@ -30,10 +30,10 @@ Step - 1:
 2 ) install via pypi
 
     ```bash
-    pip install ner-data-processor
+    pip install ner_data_processor
     ```
     ```python
-    from ner-data-processor.Ner_Data_Preparation import Custom_Ner_Dataset
+    from ner_data_processor.Ner_Data_Preparation import Custom_Ner_Dataset
     ner = Custom_Ner_Dataset()
     ```
 Step - 2:
